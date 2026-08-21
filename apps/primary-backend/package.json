@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "exports": {
+    ".": "./src/app.ts"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,6 +16,7 @@
   "dependencies": {
     "@elysia/node": "^1.4.6",
     "@elysiajs/cors": "^1.4.2",
+    "@elysiajs/eden": "^1.4.9",
     "@elysiajs/jwt": "^1.4.2",
     "@elysiajs/node": "^1.4.5",
     "db": "*",
