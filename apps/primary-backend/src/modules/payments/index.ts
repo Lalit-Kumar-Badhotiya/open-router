@@ -1,5 +1,5 @@
 import { jwt } from "@elysiajs/jwt";
-import Elysia from "elysia";
+import { Elysia } from "elysia";
 import { PaymentsModel } from "./models.js";
 import { PaymentsService } from "./service.js";
 

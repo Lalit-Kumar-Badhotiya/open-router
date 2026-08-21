@@ -1,5 +1,5 @@
 import { jwt } from "@elysiajs/jwt";
-import Elysia, { t } from "elysia";
+import { Elysia, t } from "elysia";
 import { ApiKeyModel } from "./models.js";
 import { ApiKeyService } from "./service.js";
 

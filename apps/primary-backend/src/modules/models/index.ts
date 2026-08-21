@@ -1,4 +1,4 @@
-import Elysia from "elysia";
+import { Elysia } from "elysia";
 import { ModelsModel } from "./models.js";
 import { ModelsService } from "./service.js";
 

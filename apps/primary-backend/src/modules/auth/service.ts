@@ -6,7 +6,7 @@ export abstract class AuthService {
         const user = await prisma.user.create({
             data: {
                 email,
-                password: password
+                password: password ////// hash it //todo
             }
         })
         return user.id.toString()

@@ -8,7 +8,7 @@ export abstract class ModelsService {
                 company: true
             }
         })
-
+        
         return models.map(model => ({
             id: model.id.toString(),
             name: model.name,
