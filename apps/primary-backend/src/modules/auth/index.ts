@@ -1,7 +1,7 @@
 import { Cookie, Elysia } from "elysia";
-import { AuthModel } from "./models.js";
-import { AuthService } from "./service.js";
-import { jwt } from "@elysiajs/jwt";
+import { AuthModel } from "./models";
+import { AuthService } from "./service";
+import jwt from "@elysiajs/jwt";
 
 export const app = new Elysia({ prefix: "auth" })
     .use(

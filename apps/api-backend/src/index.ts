@@ -1,7 +1,3 @@
-console.log(process.env.OPENAI_API_KEY);
-console.log(process.env.GOOGLE_API_KEY);
-console.log(process.env.ANTHROPIC_API_KEY);
-
 import bearer from "@elysiajs/bearer";
 import { prisma } from "db";
 import { Elysia, t } from "elysia";
@@ -10,13 +6,9 @@ import { Gemini } from "./llms/Gemini";
 import { OpenAi } from "./llms/Openai";
 import { Claude } from "./llms/Claude";
 import { LlmResponse } from "./llms/Base";
-import { openapi } from "@elysiajs/openapi";
-
-
 
 const app = new Elysia()
 .use(bearer())
-.use(openapi())
 .post("/api/v1/chat/completions", async ({ status, bearer: apiKey, body }) => {
   const model = body.model;
   const [_companyName, providerModelName] = model.split("/");

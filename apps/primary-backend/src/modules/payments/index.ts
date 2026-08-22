@@ -1,7 +1,7 @@
-import { jwt } from "@elysiajs/jwt";
-import { Elysia } from "elysia";
-import { PaymentsModel } from "./models.js";
-import { PaymentsService } from "./service.js";
+import jwt from "@elysiajs/jwt";
+import Elysia from "elysia";
+import { PaymentsModel } from "./models";
+import { PaymentsService } from "./service";
 
 export const app = new Elysia({ prefix: "payments" })
     .use(

@@ -1,6 +1,6 @@
-import { Elysia } from "elysia";
-import { ModelsModel } from "./models.js";
-import { ModelsService } from "./service.js";
+import Elysia from "elysia";
+import { ModelsModel } from "./models";
+import { ModelsService } from "./service";
 
 export const app = new Elysia({ prefix: "models" })
     .get("/", async () => {

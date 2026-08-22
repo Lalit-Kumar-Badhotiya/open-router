@@ -3,7 +3,7 @@ CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "credits" INTEGER NOT NULL DEFAULT 1000,
+    "credits" INTEGER NOT NULL DEFAULT 0,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -16,8 +16,6 @@ CREATE TABLE "ApiKey" (
     "apiKey" TEXT NOT NULL,
     "disabled" BOOLEAN NOT NULL DEFAULT false,
     "deleted" BOOLEAN NOT NULL DEFAULT false,
-    "lastUsed" TIMESTAMP(3),
-    "creditsConsumed" INTEGER NOT NULL DEFAULT 0,
 
     CONSTRAINT "ApiKey_pkey" PRIMARY KEY ("id")
 );

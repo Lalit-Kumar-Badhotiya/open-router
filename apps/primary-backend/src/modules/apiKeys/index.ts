@@ -1,7 +1,7 @@
-import { jwt } from "@elysiajs/jwt";
-import { Elysia, t } from "elysia";
-import { ApiKeyModel } from "./models.js";
-import { ApiKeyService } from "./service.js";
+import jwt from "@elysiajs/jwt";
+import Elysia, { t } from "elysia";
+import { ApiKeyModel } from "./models";
+import { ApiKeyService } from "./service";
 
 export const app = new Elysia({ prefix: "api-keys" })
     .use(

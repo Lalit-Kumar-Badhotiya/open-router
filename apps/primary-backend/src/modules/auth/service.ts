@@ -1,12 +1,12 @@
 import { prisma } from "db";
-// import { jwt } from '@elysiajs/jwt'
+import { jwt } from '@elysiajs/jwt'
 
 export abstract class AuthService {
     static async signup(email: string, password: string): Promise<string> {
         const user = await prisma.user.create({
             data: {
                 email,
-                password: password ////// hash it //todo
+                password: await Bun.password.hash(password)
             }
         })
         return user.id.toString()
@@ -22,7 +22,7 @@ export abstract class AuthService {
             return { correctCredentials: false };
         }
 
-        if (password != user.password) {
+        if (!await Bun.password.verify(password, user.password)) {
             return { correctCredentials: false };
         }
 

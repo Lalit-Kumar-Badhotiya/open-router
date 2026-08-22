@@ -1,5 +1,4 @@
-import "dotenv/config";
-import { app } from "./app.js";
+import { app } from "./app";
 import { cors } from '@elysiajs/cors'
 
 

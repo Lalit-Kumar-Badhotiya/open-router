@@ -1,4 +1,4 @@
-import type { App } from "primary-backend";
+import type { App } from "app";
 import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router";
 import { Signin } from "./pages/Signin";
