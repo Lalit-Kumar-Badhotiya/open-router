@@ -3,7 +3,7 @@ import { prisma } from "db";
 import { Elysia, t } from "elysia";
 import { Conversation } from "./types";
 import { Gemini } from "./llms/Gemini";
-import { OpenAi } from "./llms/Openai";
+import { OpenAi } from "./llms/OpenAi";
 import { Claude } from "./llms/Claude";
 import { LlmResponse } from "./llms/Base";
 
