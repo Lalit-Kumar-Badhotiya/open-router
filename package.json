@@ -6,7 +6,8 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types"
+    "check-types": "turbo run check-types",
+    "install-api-backend": "bun install && cd packages/db && bunx prisma generate && cd ../../apps/api-backend && bun run prod"
   },
   "devDependencies": {
     "elysia": "^1.4.25",
