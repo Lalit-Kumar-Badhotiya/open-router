@@ -5,9 +5,11 @@
     ".": "./src/app.ts"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts"
-  },
+  "dev": "bun run --watch src/index.ts",
+  "build": "bun build src/index.ts --outdir dist --target bun",
+  "start": "bun run dist/index.js",
+  "prod": "bun build src/index.ts --outdir dist --target bun && bun run dist/index.js"
+},
   "dependencies": {
     "@elysiajs/cors": "^1.4.1",
     "@elysiajs/jwt": "^1.4.0",
@@ -16,6 +18,5 @@
   },
   "devDependencies": {
     "bun-types": "latest"
-  },
-  "module": "src/index.js"
+  }
 }
