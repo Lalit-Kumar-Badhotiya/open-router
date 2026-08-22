@@ -11,7 +11,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ElysiaClientContextProvider } from "./providers/Eden";
 import { treaty } from "@elysiajs/eden";
 
-const client = treaty<App>('localhost:3000', {
+const client = treaty<App>('https://open-router-primary-backend.onrender.com', {
   fetch: {
     credentials: 'include'
   }

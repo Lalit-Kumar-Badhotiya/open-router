@@ -8,7 +8,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
     "install-api-backend": "bun install && cd packages/db && bunx prisma generate && cd ../../apps/api-backend && bun run prod",
-    "install-primary-backend": "bun install && cd packages/db && bunx prisma generate && cd ../../apps/primary-backend && bun run prod"
+    "install-primary-backend": "bun install && cd packages/db && bunx prisma generate && cd ../../apps/primary-backend && bun run prod",
+    "prod-frontend": "bun install && cd apps/dashboard-frontend && bun run build && bun run start"
   },
   "devDependencies": {
     "elysia": "^1.4.25",
