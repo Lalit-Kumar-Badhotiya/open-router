@@ -8,9 +8,9 @@ OpenRouter is a Turborepo monorepo built around a simple idea: applications shou
 
 The project is split into three main applications:
 
-- **`apps/primary-backend`** — core application backend for authentication, API keys, model/provider information, and credits.
-- **`apps/api-backend`** — AI inference gateway that accepts chat-completion requests and routes them to supported LLM providers.
-- **`apps/dashboard-frontend`** — web dashboard for interacting with the platform.
+- **`apps/primary-backend`** — core application backend for authentication, API keys, model/provider information, and credits.("https://open-router-primary-backend.onrender.com/")
+- **`apps/api-backend`** — AI inference gateway that accepts chat-completion requests and routes them to supported LLM providers.("https://open-router-api.onrender.com/")
+- **`apps/dashboard-frontend`** — web dashboard for interacting with the platform.("https://open-router-edv9.onrender.com/")
 
 Shared functionality lives under `packages/`, with PostgreSQL access and Prisma in `packages/db`.
 
