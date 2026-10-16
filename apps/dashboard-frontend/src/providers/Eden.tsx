@@ -1,8 +1,9 @@
 import { treaty } from '@elysiajs/eden'
 import type { App } from 'app'
+import { PRIMARY_BACKEND_URL } from '@/lib/backend'
 import { createContext, useContext } from 'react';
 
-const client = treaty<App>('https://open-router-primary-backend.onrender.com', {
+const client = treaty<App>(PRIMARY_BACKEND_URL, {
     fetch: {
         credentials: 'include'
     }

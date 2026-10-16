@@ -10,7 +10,9 @@ datasource db {
 model User {
   id                 Int                 @id @default(autoincrement())
   email              String              @unique
-  password           String
+  // Null for accounts created/linked via Google OAuth (they have no password)
+  password           String?
+  googleId           String?             @unique
   credits            Int                 @default(1000)
   apiKeys            ApiKey[]
   onrampTransactions OnrampTransaction[]

@@ -9,9 +9,10 @@ import { ApiKeys } from "./pages/ApiKeys";
 import { Landing } from "./pages/Landing";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ElysiaClientContextProvider } from "./providers/Eden";
+import { PRIMARY_BACKEND_URL } from "./lib/backend";
 import { treaty } from "@elysiajs/eden";
 
-const client = treaty<App>('https://open-router-primary-backend.onrender.com', {
+const client = treaty<App>(PRIMARY_BACKEND_URL, {
   fetch: {
     credentials: 'include'
   }

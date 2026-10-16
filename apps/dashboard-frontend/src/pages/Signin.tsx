@@ -1,10 +1,12 @@
 import { useElysiaClient } from "@/providers/Eden";
+import { PRIMARY_BACKEND_URL } from "@/lib/backend";
 import { useMutation } from "@tanstack/react-query";
 import { useRef } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate, useSearchParams } from "react-router";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { GoogleIcon } from "@/components/GoogleIcon";
 import {
     Card,
     CardHeader,
@@ -15,11 +17,20 @@ import {
 } from "@/components/ui/card";
 import { ArrowRight, Mail, Lock, Loader2, AlertCircle, CheckCircle2, Zap } from "lucide-react";
 
+const OAUTH_ERROR_MESSAGES: Record<string, string> = {
+    oauth: "Google sign-in failed or was canceled. Please try again.",
+    "email-unverified":
+        "The email on your Google account isn't verified yet. Sign in with email and password instead.",
+};
+
 export function Signin() {
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
     const elysiaClient = useElysiaClient();
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+
+    const oauthError = searchParams.get("error");
 
     const mutation = useMutation({
         mutationFn: async ({
@@ -142,6 +153,16 @@ export function Signin() {
                                 </div>
                             </div>
 
+                            {oauthError && !mutation.isError && (
+                                <div className="flex items-start gap-2.5 text-sm text-amber-400 bg-amber-500/10 border border-amber-500/20 rounded-lg px-3.5 py-3">
+                                    <AlertCircle className="size-4 shrink-0 mt-0.5" />
+                                    <span>
+                                        {OAUTH_ERROR_MESSAGES[oauthError] ??
+                                            "Google sign-in failed. Please try again."}
+                                    </span>
+                                </div>
+                            )}
+
                             {mutation.isError && (
                                 <div className="flex items-start gap-2.5 text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-lg px-3.5 py-3">
                                     <AlertCircle className="size-4 shrink-0 mt-0.5" />
@@ -175,6 +196,24 @@ export function Signin() {
                                         <ArrowRight className="size-4" />
                                     </>
                                 )}
+                            </Button>
+
+                            <div className="relative my-2">
+                                <div className="absolute inset-0 flex items-center">
+                                    <span className="w-full border-t border-border/50" />
+                                </div>
+                                <div className="relative flex justify-center">
+                                    <span className="px-3 text-xs uppercase tracking-wider text-muted-foreground/60 bg-card/80">
+                                        or
+                                    </span>
+                                </div>
+                            </div>
+
+                            <Button type="button" variant="outline" className="w-full h-10" asChild>
+                                <a href={`${PRIMARY_BACKEND_URL}/auth/google`}>
+                                    <GoogleIcon className="size-4" />
+                                    Continue with Google
+                                </a>
                             </Button>
                         </form>
                     </CardContent>

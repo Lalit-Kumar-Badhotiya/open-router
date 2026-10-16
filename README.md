@@ -109,6 +109,10 @@ The primary backend provides:
 - Password hashing using Bun's password API
 - JWT-based authentication
 - HTTP-only authentication cookie
+- Google OAuth 2.0 sign-in (`GET /auth/google` → consent screen, `GET /auth/google/callback`
+  → exchanges the code, creates/links the user by email, sets the same `auth` cookie
+  and redirects back to the dashboard)
+- Passwordless Google accounts are supported (password is optional in the database)
 - Protected API-key and payment routes
 - User profile/credit lookup
 
@@ -277,10 +281,20 @@ bun install
 Create an environment file for `apps/primary-backend`.
 
 ```env
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DATABASE
 JWT_SECRET=replace-with-a-long-random-secret
+
+GOOGLE_CLIENT_ID=your-google-oauth-client-id
+GOOGLE_CLIENT_SECRET=your-google-oauth-client-secret
+GOOGLE_REDIRECT_URI=http://localhost:3000/auth/google/callback
+
+FRONTEND_URL=http://localhost:3001
 ```
 
-The primary backend uses `JWT_SECRET` to sign and verify authentication tokens.
+The primary backend uses `JWT_SECRET` to sign and verify authentication tokens, and
+`DATABASE_URL` for the runtime PostgreSQL connection. `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`
+and `GOOGLE_REDIRECT_URI` enable the Google OAuth sign-in flow, and `FRONTEND_URL`
+is the dashboard origin allowed for CORS and post-OAuth redirects.
 
 ### API Backend
 
@@ -419,6 +433,24 @@ Request:
 ```
 
 A successful login creates a JWT and stores it in the `auth` HTTP-only cookie.
+
+#### Google OAuth
+
+```http
+GET /auth/google
+```
+
+Redirects the browser to the Google consent screen. The dashboard's
+"Continue with Google" buttons link straight here — no JSON call involved.
+
+```http
+GET /auth/google/callback
+```
+
+Google redirects back here with the authorization code. The backend exchanges it,
+finds or creates the user by email, sets the `auth` cookie and redirects the
+browser to the dashboard. OAuth failures redirect back to the sign-in page with
+a `?error=oauth` | `?error=email-unverified` query parameter.
 
 #### Profile
 

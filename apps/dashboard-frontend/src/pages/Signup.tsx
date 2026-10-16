@@ -1,10 +1,12 @@
 import { useElysiaClient } from "@/providers/Eden";
+import { PRIMARY_BACKEND_URL } from "@/lib/backend";
 import { useMutation } from "@tanstack/react-query";
 import { useRef } from "react";
 import { Link, useNavigate } from "react-router";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { GoogleIcon } from "@/components/GoogleIcon";
 import {
     Card,
     CardHeader,
@@ -175,6 +177,24 @@ export function Signup() {
                                         <ArrowRight className="size-4" />
                                     </>
                                 )}
+                            </Button>
+
+                            <div className="relative my-2">
+                                <div className="absolute inset-0 flex items-center">
+                                    <span className="w-full border-t border-border/50" />
+                                </div>
+                                <div className="relative flex justify-center">
+                                    <span className="px-3 text-xs uppercase tracking-wider text-muted-foreground/60 bg-card/80">
+                                        or
+                                    </span>
+                                </div>
+                            </div>
+
+                            <Button type="button" variant="outline" className="w-full h-10" asChild>
+                                <a href={`${PRIMARY_BACKEND_URL}/auth/google`}>
+                                    <GoogleIcon className="size-4" />
+                                    Continue with Google
+                                </a>
                             </Button>
                         </form>
                     </CardContent>
